@@ -29,7 +29,7 @@ def login():
 	form = Login()
 	return render_template('index.html', form = form)
 
-@app.route("/", methods =['POST'])
+@app.route("/login", methods =['POST'])
 def loginUser():
 	form = Login()
 	data = request.form
