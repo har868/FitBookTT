@@ -51,7 +51,7 @@ def signup():
 @app.route("/signup", methods=['POST'])
 def newUser():
 	form = SignUp()
-	if form.validate_on_submit():
+	if form:
 		data = request.form
 		newUser = User(username = data['username'], email = data['email'])
 		newUser.set_password(data['password'])
@@ -104,7 +104,7 @@ def allTopics():
 def newPost():
 	form = NewPost()
 	topic = request.args.get('topic')
-	if form.validate_on_submit():
+	if form:
 		data = request.form
 		newPost = Post(content = data['content'], topic = topic, author = current_user.username)
 		activity = Activity(name = current_user.username, type = 'p', topic = newPost.topic)
@@ -125,7 +125,7 @@ def newTopic():
 @login_required
 def addTopic():
 	form = NewTopic()
-	if form.validate_on_submit():
+	if form:
 		data = request.form
 		newTopic = Topic(Title = data['title'],content = data['content'])
 		newPost = Post(content = data['content'],topic = data['title'],author = current_user.username)
